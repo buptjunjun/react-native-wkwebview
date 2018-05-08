@@ -68,6 +68,9 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:(NSCoder *)aDecoder)
     [userController addScriptMessageHandler:[[WeakScriptMessageDelegate alloc] initWithDelegate:self] name:@"reactNative"];
     [userController addScriptMessageHandler:self name:@"bcz_weixinpay_pay"];
 
+    [userController addScriptMessageHandler:self name:@"bcz_system_getDeviceInfo"];
+    [userController addScriptMessageHandler:self name:@"bcz_system_jumpAppByUrl"];
+    
     config.userContentController = userController;
 
     _webView = [[WKWebView alloc] initWithFrame:self.bounds configuration:config];
