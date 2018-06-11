@@ -552,8 +552,6 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:(NSCoder *)aDecoder)
 - (void)webView:(WKWebView *)webView didFinishNavigation:(__unused WKNavigation *)navigation
 {
  
-
-  }
   NSString *source = [NSString stringWithFormat:
     @"(function() {"
     "window.originalPostMessage = window.postMessage;"
