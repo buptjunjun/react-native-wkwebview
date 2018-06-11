@@ -489,7 +489,7 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:(NSCoder *)aDecoder)
     }
   }
 
-  
+<<<<<<< HEAD
   if (isJSNavigation && [request.URL.host isEqualToString:kPostMessageHost]) {
     NSString *data = request.URL.query;
     data = [data stringByReplacingOccurrencesOfString:@"+" withString:@" "];
@@ -507,6 +507,8 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:(NSCoder *)aDecoder)
     _onMessage(event);
   }
   
+=======
+>>>>>>> wkwebview/master
   if (_onLoadingStart) {
     // We have this check to filter out iframe requests and whatnot
     BOOL isTopFrame = [url isEqual:request.mainDocumentURL];
@@ -551,9 +553,7 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:(NSCoder *)aDecoder)
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(__unused WKNavigation *)navigation
 {
- 
-
-  }
+<<<<<<< HEAD
   NSString *source = [NSString stringWithFormat:
     @"(function() {"
     "window.originalPostMessage = window.postMessage;"
@@ -580,6 +580,15 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:(NSCoder *)aDecoder)
   ];
   [webView evaluateJavaScript:source completionHandler:^(id result, NSError *error) {}];
 
+  if (_injectedJavaScript != nil) {
+    [webView evaluateJavaScript:_injectedJavaScript completionHandler:^(id result, NSError *error) {
+      NSMutableDictionary<NSString *, id> *event = [self baseEvent];
+      event[@"jsEvaluationValue"] = [NSString stringWithFormat:@"%@", result];
+      _onLoadingFinish(event);
+    }];
+  }
+=======
+>>>>>>> wkwebview/master
   // we only need the final 'finishLoad' call so only fire the event when we're actually done loading.
   if (_onLoadingFinish && !webView.loading && ![webView.URL.absoluteString isEqualToString:@"about:blank"]) {
     _onLoadingFinish([self baseEvent]);
