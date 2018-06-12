@@ -73,6 +73,7 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:(NSCoder *)aDecoder)
 
     [userController addScriptMessageHandler:self name:@"bcz_system_getDeviceInfo"];
     [userController addScriptMessageHandler:self name:@"bcz_system_jumpAppByUrl"];
+    [userController addScriptMessageHandler:self name:@"bcz_iappay_pay"];
     
     config.userContentController = userController;
 
